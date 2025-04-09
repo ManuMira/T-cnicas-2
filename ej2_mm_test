@@ -1,0 +1,27 @@
+module ej2_mm_test();
+
+logic clk;
+logic T3;
+logic init; // s
+logic [3:0] a; 
+logic [3:0] c;
+
+ej2_mm test(clk, T3, init, a, c);
+
+initial begin
+clk = 0;
+#10;
+clk = 1;
+#10;
+clk = 0;
+#10;
+T3 = 1;
+init = 1;
+clk = 1;
+#10;
+clk = 0;
+#10;
+clk = 1;
+#10;
+end
+endmodule
