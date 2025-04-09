@@ -1,0 +1,23 @@
+module ej2_mm(input logic clk, 
+		input logic T3,
+		input logic s,
+		input logic [3:0] a,
+		output logic c );
+				
+logic [3:0] b;
+
+always_ff@(posedge clk)begin
+	case(s)
+		1'b0: b <= a;
+		1'b1: b <= c;
+		endcase
+	case(T3)
+		1'b0: c <= ~a;
+		1'b1: c <= b;
+		endcase
+	if(T3)begin
+		c <= b;
+		b <= c;
+		end
+end
+endmodule
