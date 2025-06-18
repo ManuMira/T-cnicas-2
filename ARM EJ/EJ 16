@@ -1,3 +1,19 @@
+;datos
+
+primero 	dcd 	7,8,9,6,4,7
+segundo	dcd 	6,4,8,5,3,9
+mayores	fill 24
+size		dcd	6
+
+LDR R0,=primero
+LDR R1,=segundo
+LDR R2,=mayores
+LDR R3,=size
+LDR R3,[R3]
+BL notaMayor
+
+END
+
 ;notaMayor
 ;R0=primero, R1=segundo, R2=mayores, R3=n
 
@@ -23,4 +39,9 @@ notaMayor		STMFD SP!,{R4-R6,LR}
 
 			
 salir		LDMFD SP!,{R4-R6,LR}
+			MOV PC,LR
+
+;R0=n1 R1=n2 R0=may
+mayor		CMP R0,R1
+			MOVLT R0,R1
 			MOV PC,LR
