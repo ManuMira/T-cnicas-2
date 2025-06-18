@@ -1,0 +1,26 @@
+;notaMayor
+;R0=primero, R1=segundo, R2=mayores, R3=n
+
+notaMayor		STMFD SP!,{R4-R6,LR}
+			MOV R4,R0
+			MOV R5,R1
+			MOV R6,R2
+			
+		otro	CMP R3,#0
+			BEQ salir
+
+			LDR R0,[R4],#4
+			LDR R1, [R5].#4
+						
+			STMFD SP!,{R3}
+			BL mayor
+			LDMFD SP!,{R3}
+
+			STR R0,[R6],#4
+			
+			SUB R3,R3,#1
+			B otro
+
+			
+salir		LDMFD SP!,{R4-R6,LR}
+			MOV PC,LR
