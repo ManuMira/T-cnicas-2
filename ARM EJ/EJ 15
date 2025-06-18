@@ -1,0 +1,23 @@
+		;R0		= src , R1 = dst
+		
+src		dcb		'h','o','l','a',0
+dst		fill		8
+		
+		
+		LDR		R0, =src
+		LDR		R1, =dst
+		BL		strcpy
+		END
+		
+strcpy	STMFD	SP!, {R4}
+		MOV		R4, #0
+otro		LDRB		R2, [R0,R4]
+		STRB		R2, [R1, R4]
+		
+		CMP		R2, #0
+		BEQ		salir
+		
+		ADD		R4,R4,#1
+		B		otro
+salir	LDMFD	SP!,{R4}
+		MOV		PC, LR
